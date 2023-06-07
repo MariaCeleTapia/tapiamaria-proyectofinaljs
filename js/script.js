@@ -1,192 +1,11 @@
-//PRODUCTOS
+let productos = [];
 
-const productos = [
-    //Anillos
-    {
-        id: "anillos-01",
-        titulo: "Anillo 01",
-        imagen: "./img/anillos/01.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    {
-        id: "anillos-02",
-        titulo: "Anillo 02",
-        imagen: "./img/anillos/02.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    {
-        id: "anillos-03",
-        titulo: "Anillo 03",
-        imagen: "./img/anillos/03.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    {
-        id: "anillos-04",
-        titulo: "Anillo 04",
-        imagen: "./img/anillos/04.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    {
-        id: "anillos-05",
-        titulo: "Anillo 05",
-        imagen: "./img/anillos/05.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    {
-        id: "anillos-06",
-        titulo: "Anillo 06",
-        imagen: "./img/anillos/06.jpg",
-        categoria: {
-            nombre: "Anillo",
-            id: "anillos"
-        },
-        precio: 900
-    },
-    //Aros
-    {
-        id: "aros-01",
-        titulo: "Aros 01",
-        imagen: "./img/aros/01.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    {
-        id: "aros-02",
-        titulo: "Aros 02",
-        imagen: "./img/aros/02.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    {
-        id: "aros-02",
-        titulo: "Aros 02",
-        imagen: "./img/aros/02.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    {
-        id: "aros-03",
-        titulo: "Aros 03",
-        imagen: "./img/aros/03.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    {
-        id: "aros-04",
-        titulo: "Aros 04",
-        imagen: "./img/aros/04.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    {
-        id: "aros-05",
-        titulo: "Aros 05",
-        imagen: "./img/aros/05.jpg",
-        categoria: {
-            nombre: "Aros",
-            id: "aros"
-        },
-        precio: 900
-    },
-    //Cadenas
-    {
-        id: "cadenas-01",
-        titulo: "Cadena 01",
-        imagen: "./img/cadenas/01.jpg",
-        categoria: {
-            nombre: "Cadenas",
-            id: "cadenas"
-        },
-        precio: 900
-    },
-    {
-        id: "cadenas-02",
-        titulo: "Cadena 02",
-        imagen: "./img/cadenas/02.jpg",
-        categoria: {
-            nombre: "Cadenas",
-            id: "cadenas"
-        },
-        precio: 900
-    },
-    {
-        id: "cadenas-03",
-        titulo: "Cadena 03",
-        imagen: "./img/cadenas/03.jpg",
-        categoria: {
-            nombre: "Cadenas",
-            id: "cadenas"
-        },
-        precio: 900
-    },
-    //Pulseras
-    {
-        id: "pulseras-01",
-        titulo: "Pulsera 01",
-        imagen: "./img/pulseras/01.jpg",
-        categoria: {
-            nombre: "Pulseras",
-            id: "pulseras"
-        },
-        precio: 900
-    },
-    {
-        id: "pulseras-02",
-        titulo: "Pulsera 02",
-        imagen: "./img/pulseras/02.jpg",
-        categoria: {
-            nombre: "Pulseras",
-            id: "pulseras"
-        },
-        precio: 900
-    },
-    {
-        id: "pulseras-03",
-        titulo: "Pulsera 03",
-        imagen: "./img/pulseras/03.jpg",
-        categoria: {
-            nombre: "Pulseras",
-            id: "pulseras"
-        },
-        precio: 900
-    },
-
-];
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -258,6 +77,22 @@ if (productosEnCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
+
+    Toastify({
+        text: "Se agrego un nuevo producto",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #8a593d, #caa18af5)",
+            borderRadius: " 1rem",
+            textTransform: "uppercase",
+            fontSize: ".8rem",
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
